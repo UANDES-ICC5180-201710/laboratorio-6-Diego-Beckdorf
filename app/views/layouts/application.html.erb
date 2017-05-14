@@ -9,8 +9,30 @@
   </head>
 
   <body>
-    <%= link_to 'courses', courses_path %>
-    <%= link_to 'people', people_path %>
+    <p class="alert alert-info"><%= notice %></p>
+    <p class="alert alert-danger"><%= alert %></p>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li>
+              <%= link_to 'courses', courses_path %>
+            </li>
+            <li>
+              <%= link_to 'people', people_path %>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <% if person_signed_in? %>
+                <%= link_to 'sign out', destroy_person_session_path, :method => :delete %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
     <% if @course %>
       <div>
         <%= render 'courses/navbar', course: @course %>
